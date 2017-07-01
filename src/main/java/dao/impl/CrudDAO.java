@@ -117,4 +117,6 @@ public abstract class CrudDAO<T extends Entity<Integer>> implements Dao<Integer,
 
     protected abstract List<T> readAll(ResultSet resultSet) throws SQLException;
 
+
+
 }

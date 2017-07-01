@@ -1,5 +1,9 @@
 package controllers;
 
+import dao.api.MovieDAO;
+import dao.impl.MovieDaoImpl;
+import model.Movie;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +14,29 @@ import java.io.IOException;
 /**
  * Created by andr_ on 29.05.2017.
  */
-@WebServlet(name = "StartServlet", urlPatterns={"/start"})
+@WebServlet(name = "StartServlet", urlPatterns = {"/start"})
 public class StartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String loginButton = request.getParameter("login");
         String registrationButton = request.getParameter("registration");
-        if (loginButton != null){
-            response.sendRedirect(request.getContextPath() + "loginform.jsp");
+        if (loginButton != null) {
+            //   request.getRequestDispatcher("/WEB-INF/loginform.jsp").forward(request, response);
+            response.sendRedirect("/login");
+        } else if (registrationButton != null) {
+            response.sendRedirect("/reg");
         }
-        else if (registrationButton != null){
-            response.sendRedirect(request.getContextPath() + "registrationform.jsp");
-        }
+        MovieDAO movieDAO = new MovieDaoImpl(Movie.class);
+        Movie movie = movieDAO.getLastAddedMovie();
+        request.setAttribute("id", movie.getId());
+        request.setAttribute("film", movie.getTitle());
+        request.setAttribute("pict", "Pirates.jpg");
+
+
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
+
+protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
+    request.getRequestDispatcher("startpage.jsp").forward(request, response);
+        }
 }

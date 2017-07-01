@@ -2,11 +2,9 @@ package dao;
 
 import dao.api.Dao;
 import dao.impl.MovieDaoImpl;
-import dao.impl.RoleDAOImpl;
 import dao.impl.UserDAOImpl;
 import helper.PropertyHolder;
 import model.Movie;
-import model.Role;
 import model.User;
 
 /**
@@ -17,7 +15,7 @@ public class DAOFactory {
 
     private Dao<Integer, Movie> movieDao;
     private Dao<Integer, User> userDao;
-    private Dao<Integer, Role> roleDao;
+   // private Dao<Integer, AccessRight2> roleDao;
 
     private DAOFactory(){
         loadDaos();
@@ -39,7 +37,7 @@ public class DAOFactory {
             //jdbc daos
             movieDao = MovieDaoImpl.getInstance();
             userDao = new UserDAOImpl();
-            roleDao = new RoleDAOImpl();
+         //   roleDao = new RoleDAOImpl();
         }
     }
 
@@ -63,11 +61,11 @@ public class DAOFactory {
         this.userDao = userDao;
     }
 
-    public Dao<Integer, Role> getRoleDao() {
-        return roleDao;
+ //   public Dao<Integer, Role> getRoleDao() {
+  //      return roleDao;
+
+
+    //public void setRoleDao(Dao<Integer, Role> roleDao) {
+      //  this.roleDao = roleDao;
     }
 
-    public void setRoleDao(Dao<Integer, Role> roleDao) {
-        this.roleDao = roleDao;
-    }
-}

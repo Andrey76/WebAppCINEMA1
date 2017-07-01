@@ -1,5 +1,7 @@
 package dto;
 
+import model.User;
+
 import java.time.LocalDate;
 
 /**
@@ -13,20 +15,20 @@ public class UserDTO {
     private String email;
     private String sex;
     private LocalDate birthday;
-    private RoleDTO role;
+    private User.AccessRight role;
 
     public UserDTO() {
     }
 
-    public UserDTO(String login, String password, String firstName, String lastName, String email, String sex, LocalDate birthday, RoleDTO roleDTO) {
-        this.login = login;
-        this.password = password;
+    public UserDTO(String login, String password, String firstName, String lastName, String email, String sex, LocalDate birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+        this.birthday = birthday;
         this.email = email;
         this.sex = sex;
-        this.birthday = birthday;
-        this.role = roleDTO;
+        this.role = role;
     }
 
     public String getLogin() {
@@ -85,11 +87,11 @@ public class UserDTO {
         this.birthday = birthday;
     }
 
-    public RoleDTO getRole() {
+    public User.AccessRight getRole() {
         return role;
     }
 
-    public void setRole(RoleDTO role) {
+    public void setRole(User.AccessRight role) {
         this.role = role;
     }
 

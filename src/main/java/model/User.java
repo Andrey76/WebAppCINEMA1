@@ -6,48 +6,56 @@ import java.time.LocalDate;
  * Created by andr_ on 18.05.2017.
  */
 public class User extends Entity<Integer> {
-    private String login;
-    private String password;
     private String firstName;
     private String lastName;
+    private String login;
+    private String password;
+    private LocalDate birthday;
     private String email;
     private String sex;
-    private LocalDate birthday;
    // private Role role;
     private AccessRight role;
 
     public User() {
     }
 
-    public User(String login, String password, String firstName, String lastName, String email, String sex, LocalDate birthday, AccessRight role) {
-        this.login = login;
-        this.password = password;
+    public User(
+            String login
+            ,String password
+            ,String firstName
+            ,String lastName
+            ,String email
+            ,String sex,
+            LocalDate birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+        this.birthday = birthday;
         this.email = email;
         this.sex = sex;
-        this.birthday = birthday;
-        this.role = role;
+        this.role = AccessRight.User;
     }
     public enum AccessRight {
-        Admin(1), User(2), Anonymous(5);
+        Admin(0), User(1);
 
         private int num;
 
-        private AccessRight(int num) {
+        AccessRight(int num) {
             this.num = num;
         }
 
-        public int getNum() {
+        public int getRoleCode() {
             return num;
         }
+
     }
     public AccessRight getRole() {
         return role;
     }
 
-    public void setRole(AccessRight role) {
-        this.role = role;
+    public void setRole(int role) {
+        this.role = AccessRight.values()[role];
     }
 
     public String getLogin() {
@@ -109,14 +117,15 @@ public class User extends Entity<Integer> {
     @Override
     public String toString() {
         return "User{" +
-                "login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", birthday=" + birthday +
                 ", email='" + email + '\'' +
                 ", sex='" + sex + '\'' +
-                ", birthday=" + birthday +
                 ", role=" + role +
-                "} " + super.toString();
+                '}';
     }
 }
+

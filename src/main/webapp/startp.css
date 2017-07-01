@@ -51,12 +51,30 @@ html {
 }
 .imagepos{
     position:absolute;
-    TOP:55px;
-    LEFT:170px;
+    TOP:20%;
+    LEFT:23%;
     opacity:1;
 }
+.premTitle{
+    position: absolute;
+    TOP:8%;
+    LEFT:30%;
+    font-size: 250%;
+    color: #f50a29;
+    outline: 1px solid #4b8df9;
+}
+.titlepos{
+    position: absolute;
+    text-align: justify;
+    TOP:15%;
+    LEFT:35%;
+    font-size: 250%;
+    color: #f50a29;
+    outline: 1px solid #7e848a;
+}
 .innercontent{
-    min-height: 600px;
+    min-height: 40%;
+    min-width: 35%;
 }
 .sidebar2{
     width: 15%;

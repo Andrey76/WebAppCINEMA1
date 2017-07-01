@@ -6,14 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Title</title>
     <link href="registrform.css" rel = "stylesheet" type="text/css">
 </head>
-<body>
+<body>-
 <div  class="form">
-    <form id="contactform" method="post" action="/reg">
+    <form id="contactform" method="post" action="${pageContext.servletContext.contextPath}/reg">
         <p class="contact"><label for="user_name">Name:</label></p>
         <input id="user_name" name="user_name" placeholder="First name" required="" tabindex="1" type="text">
         <p class="contact"><label for="user_surname">Last name:</label></p>
@@ -41,8 +42,8 @@
                     <option value="10">October</option>
                     <option value="11">November</option>
                     <option value="12" >December</option>
+                </select>
             </label>
-            </select>
             <label>Day<input class="birthday" maxlength="2" name="BirthDay"  placeholder="Day" required=""></label>
             <label>Year <input class="birthyear" maxlength="4" name="BirthYear" placeholder="Year" required=""></label>
         </fieldset>

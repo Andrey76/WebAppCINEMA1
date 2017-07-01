@@ -1,5 +1,7 @@
 package dao.impl;
 
+import dao.api.MovieDAO;
+import datasource.DataSource;
 import model.Movie;
 
 import java.sql.*;
@@ -12,7 +14,7 @@ import static dao.impl.SQLs.UPDATE_MOVIE;
 /**
  * Created by andr_ on 18.05.2017.
  */
-public final class MovieDaoImpl extends CrudDAO<Movie> {
+public final class MovieDaoImpl extends CrudDAO<Movie> implements MovieDAO {
     private static MovieDaoImpl crudDAO;
 
     public MovieDaoImpl(Class type) {
@@ -70,5 +72,25 @@ public final class MovieDaoImpl extends CrudDAO<Movie> {
             result.add(movie);
         }
         return result;
+    }
+
+    @Override
+    public Movie getLastAddedMovie() {
+        DataSource dataSource = DataSource.getInstance();
+        Connection connection = dataSource.getConnection();
+        Movie movie = null;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQLs.SELECT_LAST_ADDED_MOVIE);
+            movie = new Movie();
+            while (resultSet.next()) {
+                movie.setId(resultSet.getInt("id"));
+                movie.setTitle(resultSet.getString("title"));
+                movie.setRent_start(resultSet.getInt("rent_start"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movie;
     }
 }

@@ -5,15 +5,15 @@
   Time: 14:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <link href="Reg.css" rel = "stylesheet" type="text/css">++++++++++++
 <head class="control-group">
-    <title class="control-group">Registration</title>
+    <title class="control-group">MovieAdd</title>
 </head>
 <body>
-<p style="color:#080808 ">Registration:</p>
+<p style="color:#080808 ">Add new movie:</p>
 <div class="control-group">
     <form name="RegistrationForm" method="post" action="/movser"
           class="form-inline; vertical-align: html-editor-align-center">
