@@ -40,6 +40,7 @@
 					<nav id="nav">
 						<ul class="links">
 							<li class="active"><a href="<c:url value="/startAdmin"/>" c+lass="brand">Kinoworld</a></li>
+							<li><a href="<c:url value="/addMovie"/>">Add movie</a></li>
 							<%--<li><a href="<c:url value="/login"/>">Login</a></li>--%>
 							<%--<li><a href="<c:url value="/reg"/>">Registration</a></li>--%>
 						</ul>
@@ -62,7 +63,7 @@
 								<a href="/moviePage?id=${id}" class="image main"><img src="${pict}" alt="" style="height: 10%;width: 50%; margin-left: 25%"/></a>
 								<ul class="actions">
 									<li><a href="#" name="buyTicket" class="button big">Buy a ticket</a></li>
-									<li><a href="/" name="buyTicket" class="button big">Buy a ticket</a></li>
+									<li><a href="/deleteMovie?id=${id}" name="delete" id = "deletee" class="button big">Delete movie</a></li>
 								</ul>
 							</article>
 
@@ -79,7 +80,7 @@
 										<p style="font-size:70%"></p>
 										<ul class="actions">
 											<li><a href="#" class="button" style="position: static">Buy a ticket</a></li>
-											<li><input type="submit" value="delete" name="delete" id = "deletee" u1 class="actions"></li>
+											<li><a href="/deleteMovie?id=${item.id}" name="delete" id = "delete" class="button big">Delete movie</a></li>
 										</ul>
 									</article>
 									</c:if>
