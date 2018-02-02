@@ -21,6 +21,10 @@ import java.sql.SQLException;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/logform.jsp").forward(request, response);
+
+    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             DriverManager.registerDriver(new Driver());
@@ -32,21 +36,18 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = new UserDAOImpl().getByLogin(login);
 
-        if (user == null) {
-            request.setAttribute("message", Messages.wrongLog);
+        if (user == null && user.getLogin() != (login)) {
+            request.setAttribute("message", Messages.WRONG_LOG);
             request.getRequestDispatcher("/login").forward(request, response);
-            
+
         }
-        if (user != null && user.getPassword().equals(password)) {
+        if (user.getPassword().equals(password)) {
             HttpSession session = request.getSession();
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/start");
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/loginform.jsp").forward(request, response);
 
-    }
 
 }

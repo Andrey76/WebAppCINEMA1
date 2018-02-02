@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by andr_ on 29.05.2017.
@@ -27,16 +28,26 @@ public class StartServlet extends HttpServlet {
         }
         MovieDAO movieDAO = new MovieDaoImpl(Movie.class);
         Movie movie = movieDAO.getLastAddedMovie();
-        request.setAttribute("id", movie.getId());
         request.setAttribute("film", movie.getTitle());
-        request.setAttribute("pict", "Pirates.jpg");
-
+        request.setAttribute("id", movie.getId());
+        request.setAttribute("rent_start", movie.getRent_start());
+        request.setAttribute("pict", movie.getPict_url());
+        request.setAttribute("rent_start", movie.getRent_start());
+        request.setAttribute("rent_start", movie.getDescription());
+        List<Movie> movies = movieDAO.getAllMoviesExceptLast();
+        request.setAttribute("movies", movies);
+        request.setAttribute("film", movie.getTitle());
+        request.setAttribute("id", movie.getId());
+        request.setAttribute("rent_start", movie.getRent_start());
+        request.setAttribute("pict", movie.getPict_url());
+        request.setAttribute("rent_start", movie.getRent_start());
+        request.setAttribute("rent_start", movie.getDescription());
+        request.getRequestDispatcher("startp.jsp").forward(request, response);
 
     }
 
 
-
-protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
-    request.getRequestDispatcher("startpage.jsp").forward(request, response);
-        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
 }

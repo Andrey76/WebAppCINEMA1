@@ -33,16 +33,15 @@
 
 				<!-- Header -->
 					<header id="header">
-						<a href="<c:url value="/startAdmin"/>" class="logo">Kinoworld</a>
+						<a href="<c:url value="/start"/>" class="logo">Kinoworld</a>
 					</header>
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li class="active"><a href="<c:url value="/startAdmin"/>" c+lass="brand">Kinoworld</a></li>
-							<li><a href="<c:url value="/addMovie"/>">Add movie</a></li>
-							<%--<li><a href="<c:url value="/login"/>">Login</a></li>--%>
-							<%--<li><a href="<c:url value="/reg"/>">Registration</a></li>--%>
+							<li class="active"><a href="<c:url value="/start"/>" c+lass="brand">Kinoworld</a></li>
+							<li><a href="<c:url value="/login"/>">Login</a></li>
+							<li><a href="<c:url value="/reg"/>">Registration</a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="https://www.twitter.com/" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -56,14 +55,13 @@
 
 						<!-- Featured Post -->
 							<article class="post featured">
-								<header class="major" >
+								<header class="major">
 									<h3 style="margin: 0;padding: 0;color: #dd1144">Премьера недели!</h3>
-									<p><a href="/adminMovPage?id=${id}"/>${film}</p>
+									<p><a href="/moviePage?id=${id}"/>${film}</p>
 								</header>
-								<a href="/adminMovPage?id=${id}" class="image main"><img src="${pict}" alt="" style="height: 10%;width: 50%; margin-left: 25%"/></a>
+								<a href="/moviePage?id=${id}" class="image main"><img src="${pict}" alt="" style="height: 10%;width: 50%; margin-left: 25%"/></a>
 								<ul class="actions">
-									<li><a href="#" name="buyTicket" class="button big">Buy a ticket</a></li>
-									<li><a href="/deleteMovie?id=${id}" name="delete" id = "deletee" class="button big">Delete movie</a></li>
+									<li><a href="#" class="button big">Купить билет</a></li>
 								</ul>
 							</article>
 
@@ -74,13 +72,12 @@
 									<article>
 										<header>
 											<span class="date" pattern = ("dd-mm-yyyy") >Начало проката с ${item.rent_start}</span>
-											<h2><a href="/adminMovPage?id=${item.id}">${item.title}</a></h2>
+											<h2><a href="/moviePage?id=${item.id}">${item.title}</a></h2>
 										</header>
-										<a href="/adminMovPage?id=${item.id}" class="image fit"><img src="${item.pict_url}" alt="" style="height: 500px; width: 400px%" /></a>
+										<a href="/moviePage?id=${item.id}" class="image fit"><img src="${item.pict_url}" alt="" style="height: 500px; width: 400px%" /></a>
 										<p style="font-size:70%"></p>
 										<ul class="actions">
 											<li><a href="#" class="button" style="position: static">Buy a ticket</a></li>
-											<li><a href="/deleteMovie?id=${item.id}" name="delete" id = "delete" class="button big">Delete movie</a></li>
 										</ul>
 									</article>
 									</c:if>

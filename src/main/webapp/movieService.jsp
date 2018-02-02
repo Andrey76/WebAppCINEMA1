@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<link href="Reg.css" rel = "stylesheet" type="text/css">++++++++++++
+<link href="movieService.css" rel = "stylesheet" type="text/css">
 <head class="control-group">
     <title class="control-group">MovieAdd</title>
 </head>
@@ -18,7 +18,7 @@
     <form name="RegistrationForm" method="post" action="/movser"
           class="form-inline; vertical-align: html-editor-align-center">
         <div class="control-group">
-            <label class="control-label" for = "AddMovieName">AddMovie:</label>
+            <label class="control-label"  for = "AddMovieName">AddMovie:</label>
             <div class="controls">
                 <input type="text" size="" id="AddMovieName" name = "movie_title" placeholder="AddMovieName">
             </div>
@@ -56,7 +56,9 @@
             <div class="controls">
                 <input type="text" id="rating" name = "rating" placeholder="rating">
             </div>
-        </div>
+                <label class="control-label" for = "pict_url">Picture URL:</label>
+                    <input type="text" id="pict_url" name = "pict_url" placeholder="pict_url">
+                </div>
         <div class="button">
         <a href="/movser"> <input type="submit" value="Submit"></input></a>>
         </div>

@@ -1,20 +1,25 @@
 package model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 /**
  * Created by andr_ on 18.05.2017.
  */
 public class User extends Entity<Integer> {
+    private static final int MAX_LOG = 20;
+    private static final int MIN_LOG = 4;
+    private static final int MIN_PAS = 4;
+    private static final int MAX_PAS = 20;
     private String firstName;
     private String lastName;
     private String login;
     private String password;
-    private LocalDate birthday;
+    private Date birthday;
     private String email;
     private String sex;
    // private Role role;
     private AccessRight role;
+
 
     public User() {
     }
@@ -26,7 +31,7 @@ public class User extends Entity<Integer> {
             ,String lastName
             ,String email
             ,String sex,
-            LocalDate birthday) {
+            Date birthday) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
@@ -59,18 +64,19 @@ public class User extends Entity<Integer> {
     }
 
     public String getLogin() {
+
         return login;
     }
 
     public void setLogin(String login) {
-        this.login = login;
+            this.login = login;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password){
         this.password = password;
     }
 
@@ -106,11 +112,11 @@ public class User extends Entity<Integer> {
         this.sex = sex;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

@@ -1,5 +1,6 @@
 package dao.impl;
 
+import dao.SQLs;
 import dao.api.Dao;
 import dao.api.UserDao;
 import datasource.DataSource;
@@ -9,16 +10,18 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-import static dao.impl.SQLs.INSERT_USER;
-import static dao.impl.SQLs.UPDATE_USER;
+import static dao.SQLs.INSERT_USER;
+import static dao.SQLs.UPDATE_USER;
 
 
 public class UserDAOImpl extends CrudDAO<User> implements UserDao {
     public UserDAOImpl() {
         super(User.class);
     }
+
     private Dao<Integer, User> userDao;
     private DataSource dataSource;
+
     @Override
     protected PreparedStatement createUpdateStatement(Connection connection, User entity) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER);
@@ -38,7 +41,7 @@ public class UserDAOImpl extends CrudDAO<User> implements UserDao {
         preparedStatement.setString(4, entity.getPassword());
         preparedStatement.setString(1, entity.getFirstName());
         preparedStatement.setString(2, entity.getLastName());
-        preparedStatement.setDate(5,   Date.valueOf(entity.getBirthday()));
+        preparedStatement.setDate(5, entity.getBirthday());
         preparedStatement.setString(6, entity.getEmail());
         preparedStatement.setString(7, entity.getSex());
         preparedStatement.setInt(8, entity.getRole().ordinal());
@@ -52,14 +55,14 @@ public class UserDAOImpl extends CrudDAO<User> implements UserDao {
         while (resultSet.next()) {
             user = new User();
             user.setId(resultSet.getInt("id"));
-            user.setFirstName(resultSet.getString("Login"));
+            user.setLogin(resultSet.getString("Login"));
             user.setLastName(resultSet.getString("Password"));
-            user.setLogin(resultSet.getString("FirstName"));
+            user.setFirstName(resultSet.getString("FirstName"));
             user.setPassword(resultSet.getString("LastName"));
-            user.setBirthday(resultSet.getDate("Birthday").toLocalDate());
+            user.setBirthday(resultSet.getDate("Birthday"));
             user.setEmail(resultSet.getString("Email"));
             user.setSex(resultSet.getString("Sex"));
-            user.setRole (resultSet.getInt("role_id"));
+            user.setRole(resultSet.getInt("role_id"));
             result.add(user);
         }
         return result;
@@ -78,18 +81,18 @@ public class UserDAOImpl extends CrudDAO<User> implements UserDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQLs.SELECT_CURRENT_LOGIN_USER);
             preparedStatement.setString(1, login);
-            ResultSet resultSet =  preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
             user = new User();
             while (resultSet.next()) {
                 user.setId(resultSet.getInt("id"));
-                user.setFirstName(resultSet.getString("Login"));
-                user.setLastName(resultSet.getString("Password"));
-                user.setLogin(resultSet.getString("FirstName"));
-                user.setPassword(resultSet.getString("LastName"));
-                user.setBirthday(resultSet.getDate("birthday").toLocalDate());
+                user.setLogin(resultSet.getString("Login"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setFirstName(resultSet.getString("FirstName"));
+                user.setLastName(resultSet.getString("LastName"));
+                user.setBirthday(resultSet.getDate("birthday"));
                 user.setEmail(resultSet.getString("Email"));
                 user.setSex(resultSet.getString("Sex"));
-                user.setRole (resultSet.getInt("role_id"));
+                user.setRole(resultSet.getInt("role_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
